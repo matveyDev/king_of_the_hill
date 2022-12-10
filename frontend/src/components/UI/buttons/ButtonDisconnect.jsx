@@ -1,7 +1,7 @@
 import React from 'react';
 import { useWeb3React } from '@web3-react/core'
-
 import { useDispatch } from 'react-redux';
+
 import { setAddress, setBalance, setTotalPrize } from '../../../store/accountSlice';
 
 
@@ -25,8 +25,8 @@ const ButtonDisconnect = () => {
 
   return (
     <button 
-    className='btn btn__disconnect blue lighten-3 waves-effect' 
-    onClick={onDisconnect}>Disconnect
+      className='btn btn__disconnect blue lighten-3 waves-effect' 
+      onClick={onDisconnect}>Disconnect
     </button>
   )
 };

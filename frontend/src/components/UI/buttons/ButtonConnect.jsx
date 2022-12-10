@@ -1,11 +1,10 @@
 import React from 'react';
 import { useWeb3React } from '@web3-react/core'
-
-import { injected } from "../../../components/wallet/connectors"
-import { web3, contractInstance } from '../../../App';
-
 import { useDispatch } from 'react-redux';
+
 import { setAddress, setBalance, setTotalPrize } from '../../../store/accountSlice';
+import { web3, contractInstance } from '../../../App';
+import { injected } from "../../../components/wallet/connectors"
 
 
 const notConnected = 'not connected'

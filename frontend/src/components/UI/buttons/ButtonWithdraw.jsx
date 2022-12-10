@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { contractInstance } from '../../../App';
-import '../../../styles/accountPanel.css';
 
 
 const ButtonWithdraw = ({from}) => {
