@@ -17,10 +17,6 @@ const AccountPanel = () => {
   const accountBalance = useSelector(state => state.account.balance)
   const accountTotalPrize = useSelector(state => state.account.totalPrize)
 
-  const isAddress = (_address) => {
-    return _address.length == 42;
-  };
-
   useEffect(() => {
     if (!window.ethereum) { return; };
     _activate();
@@ -73,6 +69,10 @@ const AccountPanel = () => {
     dispatch(setAddress(_address));
     dispatch(setBalance(_balance));
     dispatch(setTotalPrize(_prize));
+  };
+
+  const isAddress = (_address) => {
+    return _address.length == 42;
   };
 
   const renderAddress = () => {
