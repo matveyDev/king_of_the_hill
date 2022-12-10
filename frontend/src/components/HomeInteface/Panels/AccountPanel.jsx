@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import '../../../styles/accountPanel.css';
 import { contractInstance, web3 } from '../../../App';
 import { injected } from "../../wallet/connectors"
-import InlineAccount from '../../UI/inlineBocks/InlineAccount';
+import InlineAccount from '../../UI/inlineBlocks/InlineAccount';
 import { setAddress, setBalance, setTotalPrize } from '../../../store/accountSlice';
 import ButtonWithdraw from '../../UI/buttons/ButtonWithdraw';
 
@@ -100,10 +100,10 @@ const AccountPanel = () => {
   };
 
   return (
-    <div className='accountPanel z-depth-5'>
-      <InlineAccount text={`Wallet Connected: ${accountAddress}`} />
-      <InlineAccount text={`Balance: ${accountBalance}`} />
-      <InlineAccount text={`Total Prize: ${accountTotalPrize}`} />
+    <div className='panel panel__account z-depth-5'>
+      <InlineAccount text={`Wallet Connected: ${accountAddress}`} props={{className: 'panel_text'}} />
+      <InlineAccount text={`Balance: ${accountBalance}`} props={{className: 'panel_text'}} />
+      <InlineAccount text={`Total Prize: ${accountTotalPrize}`} props={{className: 'panel_text'}} />
       <div className='withdraw_block'>
         {prizeExists && <div><ButtonWithdraw from={account} /></div>}
       </div>
