@@ -1,0 +1,35 @@
+.mainGamePanel {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-between;
+  height: 100%;
+}
+
+.gamePanel {
+  background-color: #64b5f6;
+  border-radius: 25px;
+  border: 1px solid #64b5f6;
+  padding: 20px;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+
+  max-height: 66%;
+  align-items: center;
+}
+
+.gamePanelStatus {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.gamePanel__text {
+  font-family: 'Nerko One', cursive;
+  font-size: 28px;
+  display: inline-block;
+  color: black;
+} .currunt_winner:hover {
+    text-decoration: underline;
+}

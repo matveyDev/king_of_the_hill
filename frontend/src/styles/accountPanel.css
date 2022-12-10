@@ -1,0 +1,27 @@
+.accountPanel {
+  background-color: #64b5f6;
+  border-radius: 25px;
+  border: 1px solid #64b5f6;
+  padding: 20px;
+  min-height: 200px;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.inlineAccountBlock {
+  font-family: 'Nerko One', cursive;
+  font-size: 28px;
+  display: inline-block;
+}
+
+.inlineAccountBlock:hover {
+  cursor: pointer;
+}
+
+.withdraw_block {
+  padding-top: 10px;
+  align-self: center;
+}

@@ -1,0 +1,24 @@
+.connectionForm {
+  display: flex;
+  flex-direction: column;
+  font-family: serif;
+  border-radius: 25px;
+  border: 1px solid black;
+  height: 250px;
+  width: 500px;
+  align-items: center;
+  justify-content: end;
+  margin-top: 10px;
+}
+
+.connectionBtns {
+  display: flex;
+  padding: 10px 10px;
+  flex-direction: row;
+}
+
+.btn {
+  padding: 5px;
+  margin: 0 5px;
+}
+
