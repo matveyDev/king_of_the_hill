@@ -13,18 +13,12 @@ import ButtonWithdraw from '../../UI/buttons/ButtonWithdraw';
 const AccountPanel = () => {
   const dispatch = useDispatch();
   const { account, activate } = useWeb3React();
-  let accountAddress = useSelector(state => state.account.address)
-  let accountBalance = useSelector(state => state.account.balance)
-  let accountTotalPrize = useSelector(state => state.account.totalPrize)
+  const accountAddress = useSelector(state => state.account.address)
+  const accountBalance = useSelector(state => state.account.balance)
+  const accountTotalPrize = useSelector(state => state.account.totalPrize)
 
-  const isConnected = () => {
-    return accountAddress.length == 42;
-  };
-
-  if (isConnected()) {
-    accountAddress = `${accountAddress.slice(0, 6)}...${accountAddress.slice(accountAddress.length - 4)}`
-    accountBalance += ' ETH';
-    accountTotalPrize += ' ETH';
+  const isAddress = (_address) => {
+    return _address.length == 42;
   };
 
   useEffect(() => {
@@ -79,16 +73,31 @@ const AccountPanel = () => {
     dispatch(setAddress(_address));
     dispatch(setBalance(_balance));
     dispatch(setTotalPrize(_prize));
-    accountAddress = _address;
-    accountBalance = _balance;
-    accountTotalPrize = _prize;
+  };
+
+  const renderAddress = () => {
+    let displayedAddress;
+    if (isAddress(accountAddress)) {
+      displayedAddress = `${accountAddress.slice(0, 6)}...${accountAddress.slice(accountAddress.length - 4)}`
+    } else {
+      displayedAddress = accountAddress;
+    };
+    return (<InlineAccount text={`Wallet Connected: ${displayedAddress}`} props={{className: 'panel_text'}} />);
+  };
+
+  const renderBalance = () => {
+    return (<InlineAccount text={`Balance: ${accountBalance}`} props={{className: 'panel_text'}} />);
+  };
+
+  const renderTotalPrize = () => {
+    return (<InlineAccount text={`Total Prize: ${accountTotalPrize}`} props={{className: 'panel_text'}} />);
   };
 
   return (
     <div className='panel panel__account z-depth-5'>
-      <InlineAccount text={`Wallet Connected: ${accountAddress}`} props={{className: 'panel_text'}} />
-      <InlineAccount text={`Balance: ${accountBalance}`} props={{className: 'panel_text'}} />
-      <InlineAccount text={`Total Prize: ${accountTotalPrize}`} props={{className: 'panel_text'}} />
+      {renderAddress()}
+      {renderBalance()}
+      {renderTotalPrize()}
       <div className='withdraw_block'>
         {accountTotalPrize > 0 && <div><ButtonWithdraw from={account} /></div>}
       </div>
