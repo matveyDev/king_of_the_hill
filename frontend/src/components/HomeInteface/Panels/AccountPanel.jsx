@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useWeb3React } from '@web3-react/core'
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -11,9 +11,8 @@ import ButtonWithdraw from '../../UI/buttons/ButtonWithdraw';
 
 
 const AccountPanel = () => {
-  const { account, activate } = useWeb3React();
   const dispatch = useDispatch();
-  const [prizeExists, setPrizeExists] = useState(false);
+  const { account, activate } = useWeb3React();
   let accountAddress = useSelector(state => state.account.address)
   let accountBalance = useSelector(state => state.account.balance)
   let accountTotalPrize = useSelector(state => state.account.totalPrize)
@@ -31,7 +30,6 @@ const AccountPanel = () => {
   useEffect(() => {
     if (!window.ethereum) { return; };
     _activate();
-    _setPrizeExists();
 
   }, []);
 
@@ -41,18 +39,6 @@ const AccountPanel = () => {
     if (accounts.length > 0) {
       const address = accounts[0];
       _setAccount(address, false);
-    };
-  };
-
-  const _setPrizeExists = async () => {
-    const accounts = await web3.eth.getAccounts();
-    const address = accounts[0];
-    const prize = await contractInstance.methods.winnerToPrize(address).call();
-
-    if (prize > 0) {
-      setPrizeExists(true);
-    } else {
-      setPrizeExists(false);
     };
   };
 
@@ -96,7 +82,6 @@ const AccountPanel = () => {
     accountAddress = _address;
     accountBalance = _balance;
     accountTotalPrize = _prize;
-    _setPrizeExists();
   };
 
   return (
@@ -105,7 +90,7 @@ const AccountPanel = () => {
       <InlineAccount text={`Balance: ${accountBalance}`} props={{className: 'panel_text'}} />
       <InlineAccount text={`Total Prize: ${accountTotalPrize}`} props={{className: 'panel_text'}} />
       <div className='withdraw_block'>
-        {prizeExists && <div><ButtonWithdraw from={account} /></div>}
+        {accountTotalPrize > 0 && <div><ButtonWithdraw from={account} /></div>}
       </div>
     </div>
   );
