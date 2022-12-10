@@ -15,6 +15,10 @@ html, body {
   flex-direction: column;
 }
 
+.navbar {
+  margin-bottom: 15px;
+}
+
 .panel {
   background-color: #64b5f6;
   border-radius: 25px;
