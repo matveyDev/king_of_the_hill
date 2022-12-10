@@ -14,3 +14,18 @@ html, body {
   display: flex;
   flex-direction: column;
 }
+
+.panel_text {
+  font-family: 'Nerko One', cursive;
+  font-size: 28px;
+  display: inline-block;
+}
+
+.input__deposit {
+  max-width: 100px;
+}
+
+.deposit_form {
+  display: flex;
+  flex-direction: row;
+}

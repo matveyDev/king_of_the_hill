@@ -25,22 +25,10 @@
   flex: 1 1 auto;
 }
 
-.gamePanel__text {
-  font-family: 'Nerko One', cursive;
-  font-size: 28px;
-  display: inline-block;
+.currunt_winner {
   color: black;
 }
 
 .currunt_winner:hover {
   text-decoration: underline;
-}
-
-.input__deposit {
-  max-width: 100px;
-}
-
-.deposit_form {
-  display: flex;
-  flex-direction: row;
 }

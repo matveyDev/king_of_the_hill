@@ -11,16 +11,6 @@
   justify-content: space-between;
 }
 
-.inlineAccountBlock {
-  font-family: 'Nerko One', cursive;
-  font-size: 28px;
-  display: inline-block;
-}
-
-.inlineAccountBlock:hover {
-  cursor: pointer;
-}
-
 .withdraw_block {
   padding-top: 10px;
   align-self: center;
