@@ -13,17 +13,17 @@ const GamePanel = () => {
   const needRefresh = useSelector((state) => state.round.needRefresh);
 
   return (
-    <div className='mainGamePanel'>
-      <div className='gamePanel gamePanelStatus z-depth-5'>
-        <CurrentWinner className='gamePanel__text currunt_winner' />
-        <RoundTime className='gamePanel__text' />
+    <div className='main__right-panels'>
+      <div className='panel panel__game_main z-depth-5'>
+        <CurrentWinner className='panel_text currunt_winner' />
+        <RoundTime className='panel_text' />
         {needRefresh && <DepositForm />}
       </div>
-      <div className='gamePanel z-depth-5'>
-        <RoundStatus className='gamePanel__text' />
+      <div className='panel z-depth-5'>
+        <RoundStatus className='panel_text' />
       </div>
-      <div className='gamePanel z-depth-5'>
-        <PrizePool className='gamePanel__text prize_pool_component' />
+      <div className='panel z-depth-5'>
+        <PrizePool className='panel_text' />
       </div>
     </div>
   );
