@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import { useWeb3React } from '@web3-react/core'
 
-import '../../styles/depositForm.css';
 import ButtonDeposit from '../UI/buttons/ButtonDeposit';
 import InputDeposit from '../UI/inputs/InputDeposit';
 

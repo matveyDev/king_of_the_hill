@@ -30,6 +30,17 @@
   font-size: 28px;
   display: inline-block;
   color: black;
-} .currunt_winner:hover {
-    text-decoration: underline;
+}
+
+.currunt_winner:hover {
+  text-decoration: underline;
+}
+
+.input__deposit {
+  max-width: 100px;
+}
+
+.deposit_form {
+  display: flex;
+  flex-direction: row;
 }
