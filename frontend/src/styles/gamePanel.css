@@ -1,4 +1,4 @@
-.mainGamePanel {
+.main__right-panels {
   display: flex;
   flex-direction: column;
 
@@ -6,21 +6,12 @@
   height: 100%;
 }
 
-.gamePanel {
-  background-color: #64b5f6;
-  border-radius: 25px;
-  border: 1px solid #64b5f6;
-  padding: 20px;
-  overflow: hidden;
-
-  display: flex;
-  flex-direction: column;
-
+.main__right-panels > div {
   max-height: 66%;
   align-items: center;
 }
 
-.gamePanelStatus {
+.panel__game_main {
   display: flex;
   flex: 1 1 auto;
 }

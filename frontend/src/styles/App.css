@@ -15,6 +15,17 @@ html, body {
   flex-direction: column;
 }
 
+.panel {
+  background-color: #64b5f6;
+  border-radius: 25px;
+  border: 1px solid #64b5f6;
+  padding: 20px;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+}
+
 .panel_text {
   font-family: 'Nerko One', cursive;
   font-size: 28px;

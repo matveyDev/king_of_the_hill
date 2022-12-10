@@ -1,13 +1,5 @@
 .accountPanel {
-  background-color: #64b5f6;
-  border-radius: 25px;
-  border: 1px solid #64b5f6;
-  padding: 20px;
   min-height: 200px;
-  overflow: hidden;
-
-  display: flex;
-  flex-direction: column;
   justify-content: space-between;
 }
 
