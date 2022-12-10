@@ -10,10 +10,10 @@ const Navbar = () => {
       <nav className="blue lighten-2">
         <div className="nav-wrapper container">
           <a href="/" className="brand-logo">KingOfTheHill</a>
-          <ul id="nav-mobile" className="right hide-on-med-and-down">
-            <ButtonConnect />
-            <ButtonDisconnect />
-          </ul>
+          <div id="nav-mobile" className="navbar__buttons right hide-on-med-and-down">
+            <div><ButtonConnect /></div>
+            <div><ButtonDisconnect /></div>
+          </div>
         </div>
       </nav>
     </div>

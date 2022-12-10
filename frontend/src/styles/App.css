@@ -19,6 +19,13 @@ html, body {
   margin-bottom: 15px;
 }
 
+.navbar__buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 16rem;
+}
+
 .panel {
   background-color: #64b5f6;
   border-radius: 25px;
