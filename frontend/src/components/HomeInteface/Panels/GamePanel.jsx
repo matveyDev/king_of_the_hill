@@ -17,7 +17,7 @@ const GamePanel = () => {
       <div className='panel panel__game_main z-depth-5'>
         <CurrentWinner className='panel_text currunt_winner' />
         <RoundTime className='panel_text' />
-        {needRefresh && <DepositForm />}
+        {!needRefresh && <DepositForm />}
       </div>
       <div className='panel z-depth-5'>
         <RoundStatus className='panel_text' />
