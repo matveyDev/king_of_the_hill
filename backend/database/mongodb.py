@@ -31,6 +31,9 @@ class MongodbAPI:
         user = self.top_users.find_one({'address': address})
         return bool(user)
 
-    def get_users_by_total_prize(self, _limit: int) -> list[UserSchema]:
-        users = self.top_users.find({'$query': {}, '$orderby': {'total_prizes': -1}}).limit(_limit)
+    def get_users_by(self, field: str, order_by: int, _limit: int) -> list[UserSchema]:
+        users = self.top_users.find(
+            {'$query': {},
+             '$orderby': {f'{field}': {order_by}}}
+        ).limit(_limit)
         return users
