@@ -1,12 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import '../../../styles/gamePanel.css';
-import CurrentWinner from '../CurrentWinner';
-import RoundStatus from '../RoundStatus';
-import PrizePool from '../PrizePool';
-import RoundTime from '../RoundTime';
-import DepositForm from '../../forms/DepositForm';
+import '../../styles/gamePanel.css';
+import CurrentWinner from '../contractData/CurrentWinner';
+import RoundStatus from '../contractData/RoundStatus';
+import PrizePool from '../contractData/PrizePool';
+import RoundTime from '../contractData/RoundTime';
+import DepositForm from '../forms/DepositForm';
 
 
 const GamePanel = () => {

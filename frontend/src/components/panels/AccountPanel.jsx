@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import { useWeb3React } from '@web3-react/core'
 import { useSelector, useDispatch } from 'react-redux';
 
-import '../../../styles/accountPanel.css';
-import { contractInstance, web3 } from '../../../App';
-import { injected } from "../../wallet/connectors"
-import { setAddress, setBalance, setTotalPrize } from '../../../store/accountSlice';
+import '../../styles/accountPanel.css';
+import { contractInstance, web3 } from '../../App';
+import { injected } from '../wallet/connectors';
+import { setAddress, setBalance, setTotalPrize } from '../../store/accountSlice';
 
-import ButtonWithdraw from '../../UI/buttons/ButtonWithdraw';
-import InlineAccount from '../../UI/inlineBlocks/InlineAccount';
+import ButtonWithdraw from '../UI/buttons/ButtonWithdraw';
+import InlineAccount from '../UI/inlineBlocks/InlineAccount';
 
 
 const AccountPanel = () => {
