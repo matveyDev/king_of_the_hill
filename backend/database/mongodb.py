@@ -1,8 +1,8 @@
 from pymongo import MongoClient
 
-from helpers import validate_address
 from settings import MONGODB_URI, DB_NAME
-from schemas import User as UserSchema
+from .helpers import validate_address
+from .schemas import User as UserSchema
 
 
 class MongodbAPI:
@@ -31,9 +31,11 @@ class MongodbAPI:
         user = self.top_users.find_one({'address': address})
         return bool(user)
 
-    def get_users_by(self, field: str, order_by: int, _limit: int) -> list[UserSchema]:
+    def get_users_by(self, field: str, order_by: int, limit: int) -> list[UserSchema]:
         users = self.top_users.find(
             {'$query': {},
-             '$orderby': {f'{field}': {order_by}}}
-        ).limit(_limit)
-        return users
+             '$orderby': {f'{field}': order_by}}
+        ).limit(limit)
+        users_list = [user for user in users]
+
+        return users_list
