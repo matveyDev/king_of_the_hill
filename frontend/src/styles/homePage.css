@@ -19,6 +19,10 @@
   max-width: 33%;
 }
 
+.left-panels > div {
+  min-height: 200px;
+}
+
 .right-panels {
   display: flex;
   flex-direction: column;
