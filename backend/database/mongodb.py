@@ -1,18 +1,19 @@
 from pymongo import MongoClient
+
+from helpers import validate_address
 from settings import MONGODB_URI, DB_NAME
+from schemas import User as UserSchema
 
 
 class MongodbAPI:
     
     def __init__(self) -> None:
-        self.client = MongoClient(MONGODB_URI)
-        self.db = self.client[DB_NAME]
-        self.top_users = self.db['topUsers']
+        client = MongoClient(MONGODB_URI)
+        db = client[DB_NAME]
+        self.top_users = db['topUsers']
 
     def add_user(self, address: str):
-        # Validate address
-        if len(address) != 42:
-            raise Exception('Address must have length equals 42')
+        validate_address(address)
 
         new_user = {
             'address': address,
@@ -29,3 +30,7 @@ class MongodbAPI:
     def check_user_exists(self, address: str) -> bool:
         user = self.top_users.find_one({'address': address})
         return bool(user)
+
+    def get_users_by_total_prize(self, _limit: int) -> list[UserSchema]:
+        users = self.top_users.find({'$query': {}, '$orderby': {'total_prizes': -1}}).limit(_limit)
+        return users
