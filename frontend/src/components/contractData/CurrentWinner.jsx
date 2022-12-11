@@ -7,7 +7,6 @@ import { contractInstance } from '../../App';
 
 
 const NoWinner = 'No winner';
-const etherScanUrl = 'http://goerli.etherscan.io/address/';
 
 
 const CurrentWinner = (props) => {
@@ -57,7 +56,7 @@ const CurrentWinner = (props) => {
         ?
         "Winner: You're winner"
         :
-        <a {...props} target='_blank' href={etherScanUrl + curWinner}>
+        <a {...props} target='_blank' href={config.ETHERSCAN_URL + curWinner}>
           {renderCurWinner()}
         </a>
       }

@@ -2,6 +2,7 @@ import React from 'react';
 
 import '../styles/homePage.css';
 import AccountPanel from '../components/panels/AccountPanel';
+import TopUsersPanel from '../components/panels/TopUsersPanel';
 import GamePanel from '../components/panels/GamePanel';
 
 
@@ -12,7 +13,7 @@ const HomePage = () => {
         <div className='left-panels'>
           <AccountPanel/>
           <AccountPanel/>
-          <AccountPanel/>
+          <TopUsersPanel/>
         </div>
         <div className='right-panels'>
           <GamePanel/>

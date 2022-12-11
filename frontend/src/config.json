@@ -3,5 +3,6 @@
 
     "CONTRACT_ADDRESS": "0x9662735b6326bc7b06747e5ecfe1da120aed6636",
     "NETWORK": "goerli",
-    "WEBSOCKET_URL": "ws://127.0.0.1:8000"
+    "SERVER_URL": "http://127.0.0.1:8000/",
+    "ETHERSCAN_URL": "http://goerli.etherscan.io/address/"
 }

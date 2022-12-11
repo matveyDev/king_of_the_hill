@@ -1,0 +1,21 @@
+.panel__top_users {
+  display: flex;
+  height: 35%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.panel__top_users_address {
+  display: block;
+  font-size: 16px;
+  color: black;
+}
+
+.panel__top_users_address:hover {
+  text-decoration: underline;
+}
+
+.title_top_users {
+  font-size: 28px;
+  align-self: center;
+}
