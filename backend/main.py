@@ -1,11 +1,21 @@
 import uvicorn
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
+from settings import ORIGINS
 from database.schemas import User as UserSchema
 from database.mongodb import MongodbAPI
 
 app = FastAPI()
 mongodb = MongodbAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=ORIGINS,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.post('/add_user', response_model=UserSchema)
