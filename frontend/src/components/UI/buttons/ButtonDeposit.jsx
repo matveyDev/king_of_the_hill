@@ -3,7 +3,7 @@ import React from 'react';
 import { contractInstance, web3 } from '../../../App';
 
 
-const ButtonDeposit = ({ from, input }) => {
+const ButtonDeposit = (props, { from, input }) => {
   const onDeposit = async () => {
     const value = input.current.value;
     if (!value) { return; }
@@ -22,6 +22,7 @@ const ButtonDeposit = ({ from, input }) => {
     <button
       className='btn btn__deposit blue lighten-3 waves-effect'
       onClick={onDeposit}
+      {...props}
     >Deposit
     </button>
   );
