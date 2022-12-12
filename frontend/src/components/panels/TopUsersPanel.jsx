@@ -19,6 +19,20 @@ const TopUsersPanel = () => {
       setUsers(_users);
     })
 
+    contractInstance.events.NewWinner(
+      async (error, event) => {
+        if (error) { console.log(error); };
+        addNewUser(event.returnValues._address);
+        addPrize(
+          event.returnValues._address,
+          event.returnValues._prize
+        )
+        getTopUsers().then(_users => {
+          setUsers(_users);
+        });
+      }
+    );
+
   }, []);
 
   const addNewUser = async (address) => {
@@ -33,21 +47,6 @@ const TopUsersPanel = () => {
       { method: 'PATCH' }
     ).catch(error => console.log(error));
   };
-
-  contractInstance.events.NewWinner(
-    async (error, event) => {
-      if (error) { console.log(error); };
-      addNewUser(event.returnValues._address);
-      addPrize(
-        event.returnValues._address,
-        event.returnValues._prize
-      ).then(() => {
-        getTopUsers().then(_users => {
-          setUsers(_users);
-        });
-      });
-    }
-  );
 
   const renderTopUsers = () => {
     return (

@@ -3,13 +3,13 @@ import React from 'react';
 import { contractInstance, web3 } from '../../../App';
 
 
-const ButtonDeposit = (props, { from, input }) => {
+const ButtonDeposit = (props) => {
   const onDeposit = async () => {
-    const value = input.current.value;
+    const value = props.input.current.value;
     if (!value) { return; }
     const _value = web3.utils.toWei(value, 'ether');
     await contractInstance.methods.deposit().send({
-      from: from,
+      from: props.from,
       value: _value
     }).then(() => {
       alert('Successful deposit!')
