@@ -6,6 +6,7 @@ from settings import ORIGINS
 from database.schemas import User as UserSchema
 from database.mongodb import MongodbAPI
 
+
 app = FastAPI()
 mongodb = MongodbAPI()
 
