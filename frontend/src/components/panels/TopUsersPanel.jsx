@@ -41,10 +41,11 @@ const TopUsersPanel = () => {
       addPrize(
         event.returnValues._address,
         event.returnValues._prize
-      ).
-      then(getTopUsers().then(_users => {
-        setUsers(_users);
-      }));
+      ).then(() => {
+        getTopUsers().then(_users => {
+          setUsers(_users);
+        });
+      });
     }
   );
 
