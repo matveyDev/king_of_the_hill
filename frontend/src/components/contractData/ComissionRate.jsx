@@ -16,6 +16,16 @@ const ComissionRate = (props) => {
     setRate(_rate);
   };
 
+  contractInstance.events.NewComissionRateToWithdraw(
+    async (error) => {
+      if (error) {
+        console.log(error);
+      } else {
+        _setRate();
+      };
+    }
+  );
+
   return (
     <div {...props}>
       Rate: {rate} ETH
