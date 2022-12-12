@@ -30,7 +30,7 @@ async def add_user(address: str):
 
 
 @app.patch('/add_prize', response_model=UserSchema)
-async def add_prize(address: str, prize: int):
+async def add_prize(address: str, prize: float):
     mongodb.add_prize_to_user(address, prize)
     user = mongodb.top_users.find_one({'address': address})
 
