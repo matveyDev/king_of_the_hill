@@ -15,6 +15,10 @@ const TopUsersPanel = () => {
   };
 
   useEffect(() => {
+    getTopUsers().then(_users => {
+      setUsers(_users);
+    });
+
     contractInstance.events.NewWinner(
       async (error, event) => {
         if (error) { console.log(error); };
@@ -28,10 +32,6 @@ const TopUsersPanel = () => {
         });
       }
     );
-
-    getTopUsers().then(_users => {
-      setUsers(_users);
-    });
   }, []);
 
   const addNewUser = async (address) => {
