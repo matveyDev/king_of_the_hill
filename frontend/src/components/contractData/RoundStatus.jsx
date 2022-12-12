@@ -14,9 +14,21 @@ const RoundStatus = (props) => {
   const [roundTime, setRoundTime] = useState(0);
   const [roundStatus, setRoundStatus] = useState(0);
 
+
   useEffect(() => {
+    contractInstance.events.NewRound(
+      async (error) => _checkAndSetTimeLastDeposit(error)
+    );
+    contractInstance.events.NewDeposit(
+      async (error) => _checkAndSetTimeLastDeposit(error)
+    );
+    contractInstance.events.SetNewRoundTime(
+      async () => _setRoundTime()
+    );
+
     _setInit();
-    const interval = setInterval(() => {  
+
+    const interval = setInterval(() => {
       let time = (Date.now() - (Date.now() % 1000)) / 1000;
       let _roundStatus = (time - timeLastDeposit);
 
@@ -39,6 +51,16 @@ const RoundStatus = (props) => {
     _setRoundTime();
   };
 
+  const _checkAndSetTimeLastDeposit = async (_error) => {
+    if (_error) {
+      console.log(_error);
+    } else {
+      let _timeLastDeposit = await contractInstance.methods.timeStampLastDeposit().call();
+      _timeLastDeposit = Number(_timeLastDeposit);
+      setTimeLastDeposit(_timeLastDeposit);
+    };
+  };
+
   const _setTimeLastDeposit = async () => {
     let _timeLastDeposit = await contractInstance.methods.timeStampLastDeposit().call();
     _timeLastDeposit = Number(_timeLastDeposit);
@@ -51,35 +73,13 @@ const RoundStatus = (props) => {
     setRoundTime(_roundTime);
   };
 
-  const _checkAndSetTimeLastDeposit = async (_error) => {
-    if (_error) {
-      console.log(_error);
-    } else {
-      let _timeLastDeposit = await contractInstance.methods.timeStampLastDeposit().call();
-      _timeLastDeposit = Number(_timeLastDeposit);
-      setTimeLastDeposit(_timeLastDeposit);
-    };
-  };
-
-  contractInstance.events.NewRound(
-    async (error) => _checkAndSetTimeLastDeposit(error)
-  );
-
-  contractInstance.events.NewDeposit(
-    async (error) => _checkAndSetTimeLastDeposit(error)
-  );
-
-  contractInstance.events.SetNewRoundTime(
-    async () => _setRoundTime()
-  );
-
   return (
     <div>
       {roundStatus != 0
-      ?
-      <div {...props}>Round End's in: {roundStatus}</div>
-      :
-      <div {...props}>Round End's in: <ButtonRefreshRound from={account}/></div>
+        ?
+        <div {...props}>Round End's in: {roundStatus}</div>
+        :
+        <div {...props}>Round End's in: <ButtonRefreshRound from={account} /></div>
       }
     </div>
   );

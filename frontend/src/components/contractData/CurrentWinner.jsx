@@ -14,17 +14,15 @@ const CurrentWinner = (props) => {
   const [curWinner, setCurWinner] = useState('');
 
   useEffect(() => {
+    contractInstance.events.NewRound(
+      (error) => _checkAndSetCurWinner(error)
+    );
+    contractInstance.events.NewDeposit(
+      (error) => _checkAndSetCurWinner(error)
+    );
+
     _setCurWinner();
   });
-
-  const _setCurWinner = async () => {
-    const _curWinner = await contractInstance.methods.highestCallerAddress().call();
-    if (_curWinner.toLowerCase() == config.CONTRACT_ADDRESS.toLowerCase()) {
-      setCurWinner(NoWinner);
-    } else {
-      setCurWinner(_curWinner);
-    };
-  };
 
   const _checkAndSetCurWinner = (_error) => {
     if (_error) {
@@ -34,13 +32,14 @@ const CurrentWinner = (props) => {
     };
   };
 
-  contractInstance.events.NewRound(
-    (error) => _checkAndSetCurWinner(error)
-  );
-
-  contractInstance.events.NewDeposit(
-    (error) => _checkAndSetCurWinner(error)
-  );
+  const _setCurWinner = async () => {
+    const _curWinner = await contractInstance.methods.highestCallerAddress().call();
+    if (_curWinner.toLowerCase() == config.CONTRACT_ADDRESS.toLowerCase()) {
+      setCurWinner(NoWinner);
+    } else {
+      setCurWinner(_curWinner);
+    };
+  };
 
   const renderCurWinner = () => {
     if (curWinner.length == 42) {

@@ -20,12 +20,29 @@ const AccountPanel = () => {
 
   useEffect(() => {
     if (!window.ethereum) { return; };
-    _activate();
+    contractInstance.events.NewRound(
+      async (error) => {
+        const accounts = await web3.eth.getAccounts();
+        _checkAndSetAccount(error, accounts[0]);
+      }
+    );
+    contractInstance.events.WithdrawPrize(
+      async (error, event) => {
+        _checkAndSetAccount(error, event.returnValues._address);
+      }
+    );
+    contractInstance.events.NewDeposit(
+      async (error, event) => {
+        _checkAndSetAccount(error, event.returnValues.from);
+      }
+    );
 
+    _activate();
   }, []);
 
   const _activate = async () => {
     activate(injected);
+
     const accounts = await web3.eth.getAccounts();
     if (accounts.length > 0) {
       const address = accounts[0];
@@ -33,24 +50,9 @@ const AccountPanel = () => {
     };
   };
 
-  contractInstance.events.NewRound(
-    async (error) => {
-      const accounts = await web3.eth.getAccounts();
-      _checkAndSetAccount(error, accounts[0]);
-    }
-  );
-
-  contractInstance.events.WithdrawPrize(
-    async (error, event) => {
-      _checkAndSetAccount(error, event.returnValues._address);
-    }
-  );
-
-  contractInstance.events.NewDeposit(
-    async (error, event) => {
-      _checkAndSetAccount(error, event.returnValues.from);
-    }
-  );
+  const isAddress = (_address) => {
+    return _address.length == 42;
+  };
 
   const _checkAndSetAccount = async (error, address) => {
     if (error) { console.log(error); }
@@ -72,10 +74,6 @@ const AccountPanel = () => {
     dispatch(setTotalPrize(_prize));
   };
 
-  const isAddress = (_address) => {
-    return _address.length == 42;
-  };
-
   const renderAddress = () => {
     let displayedAddress;
     if (isAddress(accountAddress)) {
@@ -83,15 +81,15 @@ const AccountPanel = () => {
     } else {
       displayedAddress = accountAddress;
     };
-    return (<InlineAccount text={`Wallet Connected: ${displayedAddress}`} props={{className: 'panel_text'}} />);
+    return (<InlineAccount text={`Wallet Connected: ${displayedAddress}`} props={{ className: 'panel_text' }} />);
   };
 
   const renderBalance = () => {
-    return (<InlineAccount text={`Balance: ${accountBalance}`} props={{className: 'panel_text'}} />);
+    return (<InlineAccount text={`Balance: ${accountBalance}`} props={{ className: 'panel_text' }} />);
   };
 
   const renderTotalPrize = () => {
-    return (<InlineAccount text={`Total Prize: ${accountTotalPrize}`} props={{className: 'panel_text'}} />);
+    return (<InlineAccount text={`Total Prize: ${accountTotalPrize}`} props={{ className: 'panel_text' }} />);
   };
 
   return (

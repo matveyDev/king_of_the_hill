@@ -7,6 +7,16 @@ const ComissionRate = (props) => {
   const [rate, setRate] = useState(0);
 
   useEffect(() => {
+    contractInstance.events.NewComissionRateToWithdraw(
+      async (error) => {
+        if (error) {
+          console.log(error);
+        } else {
+          _setRate();
+        };
+      }
+    );
+
     _setRate();
   }, [])
 
@@ -15,16 +25,6 @@ const ComissionRate = (props) => {
     _rate = web3.utils.fromWei(_rate, 'ether');
     setRate(_rate);
   };
-
-  contractInstance.events.NewComissionRateToWithdraw(
-    async (error) => {
-      if (error) {
-        console.log(error);
-      } else {
-        _setRate();
-      };
-    }
-  );
 
   return (
     <div {...props}>

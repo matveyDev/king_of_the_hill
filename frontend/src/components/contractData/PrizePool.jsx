@@ -7,31 +7,29 @@ const PrizePool = (props) => {
   const [prizePool, setPrizePool] = useState(0);
 
   useEffect(() => {
-    _setPrizePool();
+    contractInstance.events.NewRound(
+      (error) => _checkAndSetPrizePool(error)
+    );
+    contractInstance.events.NewDeposit(
+      (error) => _checkAndSetPrizePool(error)
+    );
 
+    _setPrizePool();
   }, []);
+
+  const _checkAndSetPrizePool = (_error) => {
+    if (_error) {
+      console.log(_error);
+    } else {
+      _setPrizePool();
+    };
+  };
 
   const _setPrizePool = async () => {
     let _prizePool = await contractInstance.methods.prizePool().call();
     _prizePool = web3.utils.fromWei(_prizePool);
     setPrizePool(_prizePool);
   };
-
-  const _checkAndSetPrizePool = (_error) => {
-      if (_error) {
-        console.log(_error);
-      } else {
-        _setPrizePool();
-      };
-  };
-
-  contractInstance.events.NewRound(
-    (error) => _checkAndSetPrizePool(error)
-  );
-
-  contractInstance.events.NewDeposit(
-    (error) => _checkAndSetPrizePool(error)
-  );
 
   return (
     <div {...props}>
