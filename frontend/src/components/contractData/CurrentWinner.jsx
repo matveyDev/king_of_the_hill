@@ -44,9 +44,9 @@ const CurrentWinner = (props) => {
 
   const renderCurWinner = () => {
     if (curWinner.length == 42) {
-      return `Winner: ${curWinner.slice(0, 6)}...${curWinner.slice(curWinner.length - 4)}`;
+      return `Current Winner: ${curWinner.slice(0, 6)}...${curWinner.slice(curWinner.length - 4)}`;
     } else {
-      return `Winner: ${curWinner}`;
+      return `Current Winner: ${curWinner}`;
     };
   }
 
@@ -54,7 +54,7 @@ const CurrentWinner = (props) => {
     <div {...props}>
       {curWinner == account
         ?
-        "Winner: You're winner"
+        "Current Winner: You're winner"
         :
         <a {...props} target='_blank' href={config.ETHERSCAN_URL + curWinner}>
           {renderCurWinner()}
