@@ -13,7 +13,9 @@
 
 .panel__game_main {
   display: flex;
+  flex-direction: column;
   flex: 1 1 auto;
+  justify-content: center;
 }
 
 .currunt_winner {
