@@ -7,13 +7,6 @@ const RoundTime = (props) => {
   const [roundTime, setRoundTime] = useState(0);
 
   useEffect(() => {
-    contractInstance.events.NewRound(
-      (error) => _checkAndSetRoundTime(error)
-    );
-    contractInstance.events.SetNewRoundTime(
-      (error) => _checkAndSetRoundTime(error)
-    );
-
     _setRoundTime();
   }, []);
 
@@ -30,6 +23,13 @@ const RoundTime = (props) => {
     _roundTime = Number(_roundTime);
     setRoundTime(_roundTime);
   };
+
+  contractInstance.events.NewRound(
+    (error) => _checkAndSetRoundTime(error)
+  );
+  contractInstance.events.SetNewRoundTime(
+    (error) => _checkAndSetRoundTime(error)
+  );
 
   return (
     <div {...props}>

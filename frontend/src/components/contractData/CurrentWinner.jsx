@@ -14,13 +14,6 @@ const CurrentWinner = (props) => {
   const [curWinner, setCurWinner] = useState('');
 
   useEffect(() => {
-    contractInstance.events.NewRound(
-      (error) => _checkAndSetCurWinner(error)
-    );
-    contractInstance.events.NewDeposit(
-      (error) => _checkAndSetCurWinner(error)
-    );
-
     _setCurWinner();
   });
 
@@ -40,6 +33,13 @@ const CurrentWinner = (props) => {
       setCurWinner(_curWinner);
     };
   };
+
+  contractInstance.events.NewRound(
+    (error) => _checkAndSetCurWinner(error)
+  );
+  contractInstance.events.NewDeposit(
+    (error) => _checkAndSetCurWinner(error)
+  );
 
   const renderCurWinner = () => {
     if (curWinner.length == 42) {

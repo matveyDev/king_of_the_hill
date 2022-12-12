@@ -20,23 +20,6 @@ const AccountPanel = () => {
 
   useEffect(() => {
     if (!window.ethereum) { return; };
-    contractInstance.events.NewRound(
-      async (error) => {
-        const accounts = await web3.eth.getAccounts();
-        _checkAndSetAccount(error, accounts[0]);
-      }
-    );
-    contractInstance.events.WithdrawPrize(
-      async (error, event) => {
-        _checkAndSetAccount(error, event.returnValues._address);
-      }
-    );
-    contractInstance.events.NewDeposit(
-      async (error, event) => {
-        _checkAndSetAccount(error, event.returnValues.from);
-      }
-    );
-
     _activate();
   }, []);
 
@@ -73,6 +56,23 @@ const AccountPanel = () => {
     dispatch(setBalance(_balance));
     dispatch(setTotalPrize(_prize));
   };
+
+  contractInstance.events.NewRound(
+    async (error) => {
+      const accounts = await web3.eth.getAccounts();
+      _checkAndSetAccount(error, accounts[0]);
+    }
+  );
+  contractInstance.events.WithdrawPrize(
+    async (error, event) => {
+      _checkAndSetAccount(error, event.returnValues._address);
+    }
+  );
+  contractInstance.events.NewDeposit(
+    async (error, event) => {
+      _checkAndSetAccount(error, event.returnValues.from);
+    }
+  );
 
   const renderAddress = () => {
     let displayedAddress;

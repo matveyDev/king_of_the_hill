@@ -16,16 +16,6 @@ const RoundStatus = (props) => {
 
 
   useEffect(() => {
-    contractInstance.events.NewRound(
-      async (error) => _checkAndSetTimeLastDeposit(error)
-    );
-    contractInstance.events.NewDeposit(
-      async (error) => _checkAndSetTimeLastDeposit(error)
-    );
-    contractInstance.events.SetNewRoundTime(
-      async () => _setRoundTime()
-    );
-
     _setInit();
 
     const interval = setInterval(() => {
@@ -72,6 +62,16 @@ const RoundStatus = (props) => {
     _roundTime = Number(_roundTime);
     setRoundTime(_roundTime);
   };
+
+  contractInstance.events.NewRound(
+    async (error) => _checkAndSetTimeLastDeposit(error)
+  );
+  contractInstance.events.NewDeposit(
+    async (error) => _checkAndSetTimeLastDeposit(error)
+  );
+  contractInstance.events.SetNewRoundTime(
+    async () => _setRoundTime()
+  );
 
   return (
     <div>

@@ -7,13 +7,6 @@ const HighestDeposit = (props) => {
   const [highestDeposit, setHighestDeposit] = useState(0);
 
   useEffect(() => {
-    contractInstance.events.NewDeposit(
-      async () => _setHighestDeposit()
-    );
-    contractInstance.events.NewRound(
-      async () => setHighestDeposit(0)
-    );
-
     _setHighestDeposit();
   }, []);
 
@@ -22,6 +15,13 @@ const HighestDeposit = (props) => {
     _highestDeposit = web3.utils.fromWei(_highestDeposit, 'ether');
     setHighestDeposit(_highestDeposit);
   };
+
+  contractInstance.events.NewDeposit(
+    async () => _setHighestDeposit()
+  );
+  contractInstance.events.NewRound(
+    async () => setHighestDeposit(0)
+  );
 
   return (
     <div {...props}>
