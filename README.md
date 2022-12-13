@@ -18,3 +18,5 @@ Solidity, Truffle, [web3js](https://web3js.readthedocs.io/en/v1.8.1/)
 FastAPI, MongoDB, React, Redux, [MaterializeCSS](https://materializecss.com/)
 
 Docker, docker-compose
+
+<img width="1792" alt="image" src="https://user-images.githubusercontent.com/99687428/207204893-936e7746-6cb3-48b9-a3c7-f6a74f686922.png">
