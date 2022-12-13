@@ -1,10 +1,10 @@
 run: docker-compose up --build
 
-API Docs: 127.0.0.1:8000/docs
+API Docs: http://127.0.0.1:8000/docs
 
 (Work If you've installed crypto-wallet such as Metamask)
 
-Frontend: 127.0.0.1:3000/
+Frontend: http://127.0.0.1:3000/
 
 Network: GOERLI (testnet)
 
