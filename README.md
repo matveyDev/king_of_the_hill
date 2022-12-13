@@ -1,4 +1,6 @@
-run: docker-compose up --build
+-> git clone https://github.com/matveyDev/king_of_the_hill.git
+
+-> docker-compose up --build
 
 API Docs: http://127.0.0.1:8000/docs
 
